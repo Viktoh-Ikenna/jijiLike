@@ -18,12 +18,12 @@ export const UserPage = () => {
     return (
         <div className='UserPage'>
             <User User={+params.userId} />
-            <div features>
+            <div className='features'>
             <h2>My Products</h2>
             <hr />
             <div className="listsOfProduct" >
                 {adsState === null ? loading : adsState.map((e, index) => {
-                    return <Link style={{width:'80%'}} to={`/${e.category}/item/${e.id}/user-${e.userId}/brand-${e.brand}/`}> <Product products={e} back='97%' /></Link>
+                    return <Link style={{width:'80%'}} to={`/${e.category}/item/${e.id}/user-${e.userId}/brand-${e.brand}/`}> <Product products={e} back='100%' /></Link>
                 })
                 }
             </div>
