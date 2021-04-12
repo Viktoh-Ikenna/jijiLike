@@ -75,8 +75,8 @@ const NavBar = ({ history }) => {
 
                     </form>
                 </div>}
-            {condition.Login && <Login />}
-            {condition.SignUp && <SignUp />}
+            {condition.Login && <Login onClick={Sign} />}
+            {condition.SignUp && <SignUp  />}
             {condition.toggler && <CategoryMenu />}
         </div>
     )

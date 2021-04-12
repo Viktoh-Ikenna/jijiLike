@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import './login.css';
 
 
-export const Login = (props) => {
+export const Login = ({onClick}) => {
     const submit = useRef();
     const Email = useRef();
     const HandleInput = ({ target }) => {
@@ -24,7 +24,9 @@ export const Login = (props) => {
 
     return (
         <div className='login'>
+        
             <div className="form">
+            <i onClick={onClick}>dont have an account yet ?</i>
                 <h3>login</h3>
                 <form action="">
                     <span>EMAIL:</span><input ref={Email} onChange={HandleInput} type="email" /><br />
