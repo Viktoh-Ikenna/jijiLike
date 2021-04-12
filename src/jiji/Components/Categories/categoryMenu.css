@@ -1,0 +1,53 @@
+.ToggleAbleMenu {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  background-color: rgba(5, 0, 0, 0.837);
+}
+
+.listOfTmenu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0%;
+  width: 250px;
+}
+
+.listOfTmenu li {}
+
+.listOfTmenu li a {
+  cursor: pointer;
+  padding-left: 10px;
+  background-color: aliceblue;
+  width: 100%;
+  position: relative;
+  line-height: 50px;
+  border: 1px solid purple;
+  display: block;
+
+}
+
+.SecondListOfmenu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0%;
+  width: 250px;
+}
+
+.SecondListOfmenu li a {
+  cursor: pointer;
+  width: 100%;
+  padding-left: 10px;
+  background-color: aliceblue;
+  position: relative;
+  line-height: 50px;
+  border: 1px solid purple;
+  display: block;
+}
+
+@media only screen and (max-width: 1020px) {}

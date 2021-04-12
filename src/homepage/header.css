@@ -1,0 +1,66 @@
+.navBar{
+    display:grid;
+    grid-template: repeat(3,1fr)/repeat(12,1fr);
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+  height: 50px;
+  padding-top:10px;
+}
+
+ul{
+    list-style: none;
+}
+.deskTop{
+display: flex;
+grid-area: 1/8/3/13;
+justify-content: center;
+align-items: center;
+}
+.deskTop li{
+    flex-grow: 1;
+    text-align: center;
+    line-height: 50px;
+}
+#logo{
+    grid-area: 1/1/3/3;
+    text-align: center;
+
+}
+.Mobile{
+    display:none;
+}
+
+.headerBody{
+    margin-top:10px;
+    display: grid;
+    grid-template: repeat(6,1fr)/repeat(2,1fr);
+    width:100%;
+    height: 400px;
+}
+.headerBody .slid{
+    grid-area:1/2/7/4;
+}
+.headerBody .display{
+    grid-area:1/1/7/2;
+}
+@media (max-width:600px){
+    .Mobile{
+        display:flex;
+    }
+}
+
+
+
+.dii li {
+    overflow: hidden;
+    width:0px;
+    height: 50px;
+    background-color: green;
+    transition: all 1s ease-in-out;
+}
+.ss li{
+
+    width:150px;
+}

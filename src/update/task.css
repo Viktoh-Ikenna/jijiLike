@@ -1,0 +1,23 @@
+ul{
+list-style:none;
+transform: translateX(-15px);
+width: 50%;
+margin: auto;
+position: relative;
+}
+li{
+ width:100%;
+ background-color: aqua;
+}
+li h3{
+    margin-left:10px;
+}
+li .xx{
+    position: relative;;
+    transform: translate(430px,-40px);
+
+}
+li div{
+background-color: aquamarine;
+text-align:center;
+}

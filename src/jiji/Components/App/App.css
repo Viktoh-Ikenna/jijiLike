@@ -1,0 +1,36 @@
+body,
+html,
+#root {
+  height: 100%;
+}
+
+.widdy{
+  width: 50%;
+
+}
+html {
+  font-size: 15px;
+}
+
+.homePageads{
+  margin:10px auto;
+  display:flex;
+  width:90%;
+  flex-wrap:wrap;
+  flex-shrink: 0;
+}
+a,Link{
+  color:black;
+  text-decoration: none;
+}
+a:hover,Link:hover{
+  box-shadow: 0px 0px 5px 1px purple;
+}
+@media only screen and (max-width: 600px) {
+ .widdy{
+  width: 100%;
+ }
+ .homePageads{
+   flex-direction: column;
+ }
+}

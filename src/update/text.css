@@ -1,0 +1,16 @@
+.inputs{
+    width: 50%;
+    margin:50px auto;
+    position: relative;
+}
+.but{
+    width:30%;
+    position:  relative;
+    transform: translateX(322px);
+}
+input{
+    width:100%;
+}
+textarea{
+    width:100%; 
+}

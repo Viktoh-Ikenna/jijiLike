@@ -1,0 +1,115 @@
+.slides{
+    background-color:rgb(228, 155, 228);
+    display:grid;
+    grid-template: repeat(13,1fr)/repeat(24,1fr);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.slides .conta{
+    grid-area:1/2/14/24;
+    overflow: hidden; 
+}
+#co{
+transition: 1s ease-in-out;
+    display:flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+   
+}
+#co img{
+    width: 100%;
+    height: 450px;
+}
+
+.slides .button{
+   cursor: pointer;
+    z-index: 5;
+    color:black;
+    opacity:1;
+
+    height: 20px;
+    width: 20px;
+}
+.slides .left{
+    grid-area:7/1/7/2;
+    transition: 1s ease-in-out;
+    text-align: center;
+}
+.slides .right{
+    grid-area:7/24/7/25;
+   text-align: center;
+    transition: 1s ease-in-out;
+}
+
+.left div::after,.left div::before{
+content:"";
+width:15px;
+height: 4px;
+background-color: red;
+position: absolute;
+display: block;
+transform: translateY(10px)
+}
+.left div::after{
+transform: rotate(-25deg) translate(0px,5px);
+animation:righ 1s ease-in-out infinite 5s;
+}
+.left div::before{
+    transform: rotate(25deg) translate(7px,8px);
+    animation:lef 1s ease-in-out infinite 5s;
+}
+@keyframes lef{
+    0%{
+        transform: rotate(20deg) translate(7px,9px);
+    }
+    100%{
+        transform: rotate(30deg) translate(7px,8px); 
+    }
+}
+@keyframes righ{
+    0%{
+        transform: rotate(-20deg) translate(0px,6px);
+    }
+    100%{
+        transform: rotate(-30deg) translate(0px,5px); 
+    }
+}
+
+
+.right div::after,.right div::before{
+    content:"";
+    width:15px;
+    height: 4px;
+    background-color: red;
+    position: absolute;
+    display: block;
+    transform: translateY(10px)
+    }
+
+    .right div::after{
+        transform: rotate(-150deg) translate(-7px,0px);
+        animation:rig 1s ease-in-out infinite 5s;
+        }
+    .right div::before{
+            transform: rotate(150deg) translate(0px,-11px);
+            animation:le 1s ease-in-out infinite 5s;
+        }
+        @keyframes le{
+            0%{
+                transform: rotate(160deg) translate(0px,-11px);
+            }
+            100%{
+                transform: rotate(150deg) translate(0px,-11px); 
+            }
+        }
+        @keyframes rig{
+            0%{
+                transform: rotate(-160deg) translate(px,0px);
+            }
+            100%{
+                transform: rotate(-150deg) translate(-5px,0px); 
+            }
+        }

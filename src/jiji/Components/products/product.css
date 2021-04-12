@@ -1,0 +1,152 @@
+.product {
+    margin: 10px;
+    height: 120px;
+    width: 80%;
+    border: 1px solid orange;
+    display: grid;
+    grid-template: repeat(6, 1fr)/repeat(12, 1fr);
+    line-height: 21px;
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.product .Pname {
+    font-size: 18px;
+    font-weight: bolder;
+    grid-area: 1/5/1/10;
+    display: inline;
+    margin: 0px;
+    padding: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+}
+
+.product .prize {
+    grid-area: 1/9/3/13;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+    text-align: right;
+    background-color: orange;
+    text-align: center;
+    padding-top: 10px;
+    overflow: hidden;
+}
+
+.product .spec {
+    overflow: hidden;
+    list-style: none;
+    display: flex;
+    grid-area: 2/5/2/9;
+    margin: 0px;
+    padding: 0px;
+    justify-content: left;
+}
+
+.product .spec li {
+    margin-right: 3px;
+    text-align: left;
+    background-color: rgb(211, 206, 211);
+    padding: 0px 3px;
+    border-radius: 20px;
+}
+
+.product .date {
+    grid-area: 3/5/3/6;
+}
+
+.product .Location {
+    grid-area: 3/7/3/9;
+}
+
+.product .swapOption {
+    grid-area: 4/5/6/8;
+    margin: 0px;
+    padding: 0px;
+}
+
+.product .swapOption ul {
+    margin: 0px;
+    list-style: none;
+    padding: 0px;
+    display: flex;
+}
+
+.product .swapOption ul li {
+    margin-right: 30px;
+    text-align: left;
+    background-color: rgb(211, 206, 211);
+    padding: 0px 10px;
+    border-radius: 20px;
+}
+
+.img {
+    grid-area: 1/1/7/4;
+    width: 100%;
+    height: 100%;
+    margin-right: -3px
+}
+
+.img img {
+    width: 100%;
+    height: 100%;
+}
+
+.loading {
+    display: block;
+    width: 400px;
+    height: 200px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 5px purple;
+    transition: transform .5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    overflow: hidden;
+}
+
+.loading div {
+    margin: 10px;
+    width: 70%;
+    height: 20%;
+    background-color: rgba(0, 0, 0, 0.2)
+}
+
+.loading div::before, .loading div::after {
+    content: '';
+    display: block;
+    background-color: rgba(84, 84, 84, 0.7);
+    height: 10px;
+    width: 140%;
+    transition: all .5s ease-in-out;
+    margin-top: -30px;
+    position: relative;
+    animation: ccc .3s ease-in-out infinite;
+}
+
+@keyframes ccc {
+    0% {
+        margin-top: -30px;
+    }
+    100% {
+        margin-top: 200px;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .product .prize {
+        font-size: 12px;
+        overflow: hidden;
+    }
+   }
+   @media only screen and (max-width: 900px) {
+    .product .prize {
+        font-size: 16px;
+        letter-spacing: -2px;
+        overflow: hidden;
+    }
+   }

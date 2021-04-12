@@ -1,0 +1,18 @@
+.footer{
+text-align:center;
+width:100%;
+margin-top:20px;
+background-color:purple;
+padding-top:50px;
+padding-bottom:15px;
+text-transform:uppercase;
+} 
+.footer_con{
+  width:100%;
+display:flex;
+justify-content:space-around;
+
+}
+.footer_con ul{
+  list-style:none;
+}

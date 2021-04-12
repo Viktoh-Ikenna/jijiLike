@@ -1,0 +1,37 @@
+body{
+    height: 100%;
+    width: 100%;
+    background-color:orange;
+
+}
+.body{
+    height: 100%;
+  padding: 0 17% 10% 17%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  color: #fff;
+}
+.shake{
+    background-color: green;
+    width:100px;
+    height: 40px;
+    animation: rr 4s ease-in-out forwards infinite;
+    animation-delay: 0ms;
+}
+@keyframes rr{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+   50%{
+    transform:translateY(0);
+    opacity: 1;
+   }
+    100%{
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
