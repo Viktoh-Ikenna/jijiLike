@@ -34,7 +34,7 @@
     padding: 0px 5px;
     position: fixed;
     border-radius: 5px;
-    width:10%;
+    width:5%;
 }
 .floating ul{
 list-style: none;
@@ -46,11 +46,12 @@ width:100%;
 .floating ul li{
     
     width:100%;
-    line-height: 50px;
+    height: 10%;
 }
 .floating ul li img{
-    width:100%;
-    height: 100%;
+    width:90%;
+    height: 90%;
+    border-radius: 50%;
 }
 .Dashboard:hover{
     background-color: blue;
@@ -216,6 +217,12 @@ border-radius: 20px;
 padding:3px;
 opacity: 0;
 
+}
+#diff input{
+    width:2px;
+    color:black;
+    background: transparent;
+    outline: 0;
 }
 .show{
     height: 50px;

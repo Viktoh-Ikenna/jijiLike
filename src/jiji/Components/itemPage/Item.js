@@ -5,6 +5,7 @@ import ads from '../server/server';
 import { useParams,Link } from 'react-router-dom';
 import { User} from '../user/User';
 import { isReferenced } from '@babel/types';
+import { db } from '../firebaseDb/fireBase';
 
 
 export const Item = () => {
@@ -15,10 +16,15 @@ export const Item = () => {
     // this handles the item itself
     const [Item, setItem] = useState(null);
     useEffect(() => {
-        let response = (JSON.parse(ads));
-        let filtered = response.filter(e => (e.id === (+params.id)));
-        const [target] = filtered;
-        setItem(target);
+        db.collection('posts').get()
+        .then((res)=>res.docs)
+        .then((res)=>{
+            let filtered = res.filter(e => (e.data().id === (+params.id)));
+            const [target] = filtered;
+            setItem(target.data());
+        })
+        
+        
 
     }, [+params.id]);
 
@@ -27,9 +33,11 @@ export const Item = () => {
     //this handles for similar posts in a page
     const [SimilarItems, setItems] = useState(null);
     useEffect(() => {
-        let response = (JSON.parse(ads));
-        let filtered = response.filter(e => (e.brand === params.brand))
-        setItems(filtered);
+        db.collection('posts').get()
+        .then((res)=>res.docs)
+        .then((res)=>{
+        let filtered = res.filter(e => (e.data().brand === params.brand))
+        setItems(filtered);})
 
     }, []);
 
@@ -97,11 +105,11 @@ export const Item = () => {
             </div>
                 <div className="userSide">
                     <div className="itemPrize">{Item.prize}</div>
-                    <User User={+params.userId} />
+                    <User User={params.userId} />
                 </div>
                 <div className="SimilarPost">
                     {SimilarItems === null ? loading : SimilarItems.map((e, index) => {
-                        return <Link onClick={()=>refer.current.scrollIntoView({behavior: 'smooth'})} to={`/${params.categories}/item/${e.id}/user-${e.userId}/brand-${e.brand}/`}> <Product products={e} back='100%' /></Link>
+                        return <Link onClick={()=>refer.current.scrollIntoView({behavior: 'smooth'})} to={`/${params.categories}/item/${e.data().id}/user-${e.data().userId}/brand-${e.data().brand}/`}> <Product products={e.data()} back='100%' /></Link>
                     })
                     }
                 </div>

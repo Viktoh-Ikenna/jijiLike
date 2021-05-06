@@ -4,6 +4,7 @@ import {Link,useParams} from 'react-router-dom'
 import './productPage.css';
 import Product from '../products/Products';
 import ads from '../server/server';
+import { db } from '../firebaseDb/fireBase';
 
 export const ProductPage = (props) => {
     const params=useParams();
@@ -34,18 +35,23 @@ export const ProductPage = (props) => {
     const [adsState, setAds] = useState(null);
     const [pagination, setPage] = useState({});
     useEffect(() => {
-        let response = (JSON.parse(ads));
-        let filtered = response.filter(e => (e.category === params.categories));
-
+        db.collection('posts').get()
+        .then((res)=>res.docs)
+        .then((res)=>{
+        let filtered = res.filter(e => (e.data().category === params.categories))
         setPage((prev )=>{
-            return {...prev,count: filtered}});
+            return {...prev,count: filtered}});})
+        
+       
 
     }, []);
     useEffect(() => {
-        let response = (JSON.parse(ads));
-        let filtered = response.filter(e => (e.category === params.categories))
+        db.collection('posts').get()
+        .then((res)=>res.docs)
+        .then((res)=>{
+        let filtered = res.filter(e => (e.data().category === params.categories))
         let sliced = filtered.splice( +params.page/5000, 5);
-        setAds(sliced)
+        setAds(sliced)})
     }, [+params.page]);
     const loading = (<div className='loading'><div></div><div></div></div>);
     const Pagination = () => {
@@ -71,7 +77,7 @@ let n = 0;
 
     return (
         <div>
-            <div className='mobileToggleFilter'><span onClick={mobileFilter}>ggg</span>filter</div>
+            <div className='mobileToggleFilter'><span onClick={mobileFilter}><img src='https://cdn.iconscout.com/icon/free/png-256/filter-1634626-1389150.png' /></span>filter</div>
             <div className='filter' ref={refer}>
                 <div className='brandLabel'>Brand</div>
                 <select name='Brand' >
@@ -107,7 +113,7 @@ let n = 0;
             </div>
             <div className="listsOfProduct">
                 {adsState === null ? loading : adsState.map((e, index) => {
-                    return <Link style={{width:'80%'}} to={`/${params.categories}/item/${e.id}/user-${e.userId}/brand-${e.brand}/`}> <Product products={e} back='97%' /></Link>
+                    return <Link style={{width:'80%'}} to={`/${params.categories}/item/${e.data().id}/user-${e.data().userId}/brand-${e.data().brand}/`}> <Product products={e.data()} back='97%' /></Link>
                 })
                 }
             </div>

@@ -1,15 +1,20 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import './navBar.css';
 import { Link, useLocation } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
 import { Login } from '../Login/login';
 import { SignUp } from '../Login/SignUp';
-import { CategoryMenu } from '../Categories/CategoryMenu'
+import { CategoryMenu } from '../Categories/CategoryMenu';
+import { db } from '../firebaseDb/fireBase';
 
 const NavBar = ({ history }) => {
+// user update
+
+
     let ssearch = useRef();
     const loca = useLocation();
-    const LLogin = false;
+    
+    const [LLogin,setLogin]=useState(true)
     console.log(loca);
     const [toggle, settoggle] = useState(false);
     const [condition, setCondition] = useState({ Login: false, SignUp: false, toggler: false });
@@ -31,6 +36,29 @@ const NavBar = ({ history }) => {
         });
     }
 
+
+//image updater
+const [imgState,setImage]=useState(null);
+const [dbImg ,setdbImg]=useState(null)
+
+useEffect(()=>{
+    db.collection('user').doc(`${localStorage.getItem('user')}`).get()
+    .then(res=>res.data())
+    .then(res=>setImage(`${res.images}`))
+},[dbImg])
+
+
+const handleImg=(e)=>{
+    let reader = new FileReader();
+    reader.onload=()=>{
+        if(reader.readyState===2){
+            setdbImg(reader.result);
+        }
+    }
+    reader.readAsDataURL(e.target.files[0]);
+
+}
+dbImg!==null&&db.collection('user').doc(localStorage.getItem('user')).set({images:dbImg},{merge:true});
     return (
         <div >
             <div className="nav">
@@ -52,6 +80,7 @@ const NavBar = ({ history }) => {
                 </div>
                 <div className='floating'>
                 <ul id='diff'>
+                <li><img src={imgState} /><label for="file">+<input id='file' type='file' accept='images/*' onChange={handleImg} /></label></li>
                     <li><a href='/dashboard/ads'><img src='https://cdn3.iconfinder.com/data/icons/eightyshades/512/14_Add-512.png' /></a></li>
                     <li><a href='/dashboard/stats'><img src='https://cdn3.iconfinder.com/data/icons/e-commerce-8/91/stats-512.png' /></a></li>
                     <li><a href='/dashboard/promote'><img src='https://image.flaticon.com/icons/png/512/102/102017.png' /></a></li>
@@ -63,7 +92,7 @@ const NavBar = ({ history }) => {
                 <div onClick={log} id='add'><p>+</p></div>
             </div>
             {toggle ? <div className='searchContainer show'>
-                <form id="searchForm" onSubmit={(e) => { e.preventDefault(); history.push(`/search/query${ssearch.current.value}/page/0`); window.location.reload(true) }}>
+                <form id="searchForm" onSubmit={(e) => { e.preventDefault(); history.push(`/search/query${ssearch.current.value.toLowerCase()}/page/0`); window.location.reload(true) }}>
                     <input ref={ssearch} type='text' placeholder=" Search the Upgrade" />
                     <input type='submit' value="🔍" />
 
@@ -75,8 +104,8 @@ const NavBar = ({ history }) => {
 
                     </form>
                 </div>}
-            {condition.Login && <Login onClick={Sign} />}
-            {condition.SignUp && <SignUp  />}
+            {condition.Login && <Login onClick={Sign} user={setLogin} log={log}/>}
+            {condition.SignUp && <SignUp user={setLogin} />}
             {condition.toggler && <CategoryMenu />}
         </div>
     )
